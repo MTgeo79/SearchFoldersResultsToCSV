@@ -44,15 +44,17 @@ for ds in datasets:
     for fc in arcpy.ListFeatureClasses("*FFO*", "Polygon", feature_dataset=ds):
 
         path = os.path.join( ds, fc)
-
-        FindField(fc)
-##            print(path)
-        with arcpy.da.SearchCursor(fc, [f]) as sc:
+        createCSV(path, csvname)
+        
+        FldName = FindField(fc)
+            
+        with arcpy.da.SearchCursor(fc, [FldName, SHAPE@XY]) as sc:
             for row in sc:
-                print path
-                print row
-                    #data = row[0]
-                    #createCSV(data, csvname)
+                name = row[0]
+                locationX = row[1][0]
+                locationY = row[1][1]
+                data = name, locationX, locationY
+                createCSV(data, csvname)
 
 
 
