@@ -10,41 +10,14 @@
 #-------------------------------------------------------------------------------
 
 
+def FindField(fc):
+    field_list = [
+        "NAME", "LABEL", "NOTES", "SEED_MIX", "Range", "PROJECT_NAME", "ORIGINAL_L",
+        "WETLAND_TYPE", "Dist_Type", "Lessee", "MINENAME", "Plot_Name", "PitName", "ObjectID"
+    ]
+    fields = [fld.name.upper() for fld in arcpy.ListFields(fc)] #returns all filenames for current fc
+    return next(f for f in field_list if f.upper() in fields)
 
-##def FindField(fc)
-##    if len(arcpy.ListFields(fc,"NAME"))>0:
-##        FldName = "NAME"
-##    Elif len(arcpy.ListFields(fc,"LABEL"))>0:
-##        FldName = "LABEL"
-##    Elif len(arcpy.ListFields(fc,"NOTES"))>0:
-##        FldName = "NOTES"
-##    Elif len(arcpy.ListFields(fc,"SEED_MIX"))>0:
-##        FldName = "SEED_MIX"
-##    Elif len(arcpy.ListFields(fc,"Range"))>0:
-##        FldName = "Range"
-##    Elif len(arcpy.ListFields(fc,"PROJECT_NAME"))>0:
-##        FldName = "PROJECT_NAME"
-##    Elif len(arcpy.ListFields(fc,"ORGINAL_L"))>0:
-##        FldName = "ORGINAL_L"
-##    Elif len(arcpy.ListFields(fc,"WETLAND_TYPE"))>0:
-##        FldName = "WETLAND_TYPE"
-##    Elif len(arcpy.ListFields(fc,"Dist_Type"))>0:
-##        FldName = "Dist_Type"
-##    Elif len(arcpy.ListFields(fc,"PROJECT_NAME"))>0:
-##        FldName = "PROJECT_NAME"
-##    Elif len(arcpy.ListFields(fc,"Lessee"))>0:
-##        FldName = "Lessee"
-##    Elif len(arcpy.ListFields(fc,"label"))>0:
-##        FldName = "label"
-##    Elif len(arcpy.ListFields(fc,"MINENAME"))>0:
-##        FldName = "MINENAME"
-##    Elif len(arcpy.ListFields(fc,"Project_Name"))>0:
-##        FldName = "Project_Name"
-##    Elif len(arcpy.ListFields(fc,"Plot_Name"))>0:
-##        FldName = "Plot_Name"
-##    Elif len(arcpy.ListFields(fc,"PitName"))>0:
-##        FldName = "PitName"
-##    Else
 
 
 def createCSV(data, csvname, mode ='ab'):
