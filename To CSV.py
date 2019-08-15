@@ -72,12 +72,15 @@ for ds in datasets:
 
         path = os.path.join( ds, fc)
 
-        if len(arcpy.ListFields(fc,"NAME"))>0:
+        FindField(fc)
 ##            print(path)
-            with arcpy.da.SearchCursor(fc, ['NAME']) as sc:
-                for row in sc:
-                    data = row[0]
-                    createCSV(data, csvname)
+        with arcpy.da.SearchCursor(fc, [f]) as sc:
+            for row in sc:
+                print path
+                print row
+                    #data = row[0]
+                    #createCSV(data, csvname)
+
 
 
 
