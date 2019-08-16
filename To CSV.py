@@ -44,7 +44,10 @@ for ds in datasets:
     for fc in arcpy.ListFeatureClasses("*FFO*", "Polygon", feature_dataset=ds):
 
         path = os.path.join( ds, fc)
-        createCSV(path, csvname)
+        pathAsDict = {}
+        pathAsDict[path] = os.path.join( ds, fc)  
+        
+        createCSV(pathAsDict, csvname)
         
         FldName = FindField(fc)
             
